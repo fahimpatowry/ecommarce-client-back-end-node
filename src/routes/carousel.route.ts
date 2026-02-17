@@ -1,19 +1,18 @@
 import { Router } from "express";
+import { fetchCarousels } from "../controllers/carousel.controller";
+
 
 const router = Router();
 
 /**
  * @swagger
- * /health:
+ * /carousel:
  *   get:
  *     summary: Returns OK status
  *     responses:
  *       200:
  *         description: OK message
  */
-router.get("/", (_req, res) => {
-  res.status(200).send("ok");
-});
+router.get("/", fetchCarousels)
 
 export default router;
-  
