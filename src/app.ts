@@ -1,13 +1,21 @@
 import express from "express";
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./config/swagger";
+import cors from "cors";
 
 import healthRoute from "./routes/health.route";
 import carouselRoute from "./routes/carousel.route";
 import seasonalOffers from "./routes/seasonalOffer.route";
 import categories from "./routes/category.route";
+import products from "./routes/product.route";
 
 const app = express();
+
+app.use(cors({
+    origin: "*",   // allow all (dev)
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
 
 app.use(express.json());
 
@@ -26,5 +34,8 @@ app.use("/seasonal-offers", seasonalOffers);
 
 // categories
 app.use("/categories", categories);
+
+// products
+app.use("/products", products);
 
 export default app;
