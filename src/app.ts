@@ -9,6 +9,7 @@ import seasonalOffers from "./routes/seasonalOffer.route";
 import categories from "./routes/category.route";
 import products from "./routes/product.route";
 import cart from "./routes/cart.route";
+import wish from "./routes/wish.route";
 
 const app = express();
 
@@ -41,5 +42,8 @@ app.use("/products", products);
 
 // cart
 app.use("/cart", cart);
+
+// wish
+app.use("/wish", wish);
 
 export default app;

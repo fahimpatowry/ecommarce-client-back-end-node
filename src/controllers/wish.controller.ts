@@ -1,25 +1,26 @@
 import { Request, Response } from "express";
-import { addNewCart, deleteOneCart, getAllCartItems, updateOneCart } from "../services/cart.services";
+import { addNewWish, deleteOneWish, getAllWishItems, updateOneWish } from "../services/wish.services";
 
-export const fetchCarts = async (req: Request, res: Response) => {
+
+export const fetchWishes = async (req: Request, res: Response) => {
     const userId = req.query.userId as string;
 
     try{
-        const carts = await getAllCartItems(userId);
+        const wishes = await getAllWishItems(userId);
 
         res.status(200).json({
             success: true,
-            data: carts
+            data: wishes
         })
     }catch{
         res.status(500).json({
             success: false,
-            message: "Failed to fetch carts"
+            message: "Failed to fetch wishes"
         })
     }
 }
 
-export const addCart = async (req: Request, res: Response) => {
+export const addWish = async (req: Request, res: Response) => {
     const { userId, productIds, quantity } = req.body;
 
     if (!userId) {
@@ -44,7 +45,7 @@ export const addCart = async (req: Request, res: Response) => {
     }
 
     try{
-        const newCart = await addNewCart(req.body);
+        const newCart = await addNewWish(req.body);
 
         res.status(200).json({
             success: true,
@@ -53,11 +54,12 @@ export const addCart = async (req: Request, res: Response) => {
     }catch{ 
         res.status(500).json({
             success: false,
-            message: "Failed to add cart"
+            message: "Failed to add wish"
         })
     }
 }
-export const updateCart = async (req: Request, res: Response) => {
+
+export const updateWish = async (req: Request, res: Response) => {
     const { userId, productIds, quantity } = req.body;
 
     if (!userId) {
@@ -82,7 +84,7 @@ export const updateCart = async (req: Request, res: Response) => {
     }
 
     try{
-        const newCart = await updateOneCart(req.body);
+        const newCart = await updateOneWish(req.body);
 
         res.status(200).json({
             success: true,
@@ -91,12 +93,12 @@ export const updateCart = async (req: Request, res: Response) => {
     }catch{ 
         res.status(500).json({
             success: false,
-            message: "Failed to add cart"
+            message: "Failed to add wish"
         })
     }
 }
 
-export const deleteCart = async (req: Request, res: Response) => {
+export const deleteWish = async (req: Request, res: Response) => {
     const id =  req.query.id as string;
 
     if (!id) {
@@ -106,7 +108,7 @@ export const deleteCart = async (req: Request, res: Response) => {
         });
     }else{
         try{
-            const newCart = await deleteOneCart(id);
+            const newCart = await deleteOneWish(id);
 
             res.status(200).json({
                 success: true,
@@ -115,9 +117,8 @@ export const deleteCart = async (req: Request, res: Response) => {
         }catch{ 
             res.status(500).json({
                 success: false,
-                message: "Failed to delete cart"
+                message: "Failed to delete wish"
             })
         }
     }
 }
-

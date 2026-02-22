@@ -6,7 +6,6 @@ export const getAllCartItems = async (userId: string) => {
 }
 
 export const addNewCart = async (data: ICartItem) => {
-    console.log("object")
     return await Cart.create({
         productIds: data.productIds.map(id => new Types.ObjectId(id)),
         quantity: data.quantity,
