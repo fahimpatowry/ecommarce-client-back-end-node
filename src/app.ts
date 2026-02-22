@@ -10,6 +10,7 @@ import categories from "./routes/category.route";
 import products from "./routes/product.route";
 import cart from "./routes/cart.route";
 import wish from "./routes/wish.route";
+import order from "./routes/order.route";
 
 const app = express();
 
@@ -45,5 +46,8 @@ app.use("/cart", cart);
 
 // wish
 app.use("/wish", wish);
+
+// order
+app.use("/order", order);
 
 export default app;
