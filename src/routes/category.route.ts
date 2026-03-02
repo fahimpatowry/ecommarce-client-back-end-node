@@ -9,6 +9,8 @@ const route = Router();
  * /categories:
  *   get:
  *    summary: Returns OK status
+ *    tags:
+ *       - Category
  *    responses:
  *      200:
  *       description: OK message

@@ -7,7 +7,9 @@ const router = Router();
  * @swagger
  * /products:
  *   get:
- *     summary: Returns a list of products
+ *     summary: Returns a list of 
+ *     tags:
+ *       - Products
  *     responses:
  *       200:
  *         description: Product list fetched successfully
@@ -20,6 +22,8 @@ router.get("/", fetchProducts)
  * /products/{id}:
  *   get:
  *     summary: Get a product by ID
+ *     tags:
+ *       - Products
  *     parameters: 
  *          - in: path
  *            name: id
@@ -39,6 +43,8 @@ router.get("/:id", fetchProductById)
  * /products/similar-products/{categoryId}:
  *   get:
  *     summary: Get products by category ID
+ *     tags:
+ *       - Products
  *     parameters:
  *       - in: path
  *         name: categoryId

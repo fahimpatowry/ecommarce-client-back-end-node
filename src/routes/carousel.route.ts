@@ -9,6 +9,8 @@ const router = Router();
  * /carousel:
  *   get:
  *     summary: Returns OK status
+ *     tags:
+ *       - Carousel
  *     responses:
  *       200:
  *         description: OK message

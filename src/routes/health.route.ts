@@ -7,6 +7,8 @@ const router = Router();
  * /health:
  *   get:
  *     summary: Returns OK status
+ *     tags:
+ *       - Health
  *     responses:
  *       200:
  *         description: OK message

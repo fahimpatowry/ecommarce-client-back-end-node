@@ -8,7 +8,9 @@ const route = Router();
  * @swagger
  * /seasonal-offers:
  *  get:
- *    summary: Fetch all active seasonal offers
+ *    summary: Fetch all active seasonal 
+ *    tags:
+ *       - Seasonal offers
  *    responses:
  *      200:  
  *         description: A list of active seasonal offers
