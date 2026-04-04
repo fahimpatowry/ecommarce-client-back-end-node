@@ -11,6 +11,7 @@ import products from "./routes/product.route";
 import cart from "./routes/cart.route";
 import wish from "./routes/wish.route";
 import order from "./routes/order.route";
+import auth from "./routes/auth.route";
 
 const app = express();
 
@@ -49,5 +50,8 @@ app.use("/wish", wish);
 
 // order
 app.use("/order", order);
+
+// auth
+app.use("/auth", auth);
 
 export default app;
