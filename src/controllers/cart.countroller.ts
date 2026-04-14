@@ -20,9 +20,11 @@ export const fetchCarts = async (req: Request, res: Response) => {
 }
 
 export const addCart = async (req: Request, res: Response) => {
-    const { userId, productIds, quantity } = req.body;
 
-    if (!userId) {
+    const { productIds, quantity } = req.body;
+    const { user } = req as any;
+
+    if (!user?.id) {
         return res.status(400).json({
             success: false,
             message: "userId is required"

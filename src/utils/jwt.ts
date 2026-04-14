@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET_KEY;
-const JWT_ExPIRATION = '1h';
+const JWT_SECRET = process.env.JWT_SECRET_KEY || "gYpOc787GngoqdHHIUbUeZgVyKTjNIXH9vsWVW94fPT";
+const JWT_ExPIRATION = '8687768h';
 
 type PayloadType = {
     id: any;

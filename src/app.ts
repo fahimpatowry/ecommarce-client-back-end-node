@@ -12,14 +12,19 @@ import cart from "./routes/cart.route";
 import wish from "./routes/wish.route";
 import order from "./routes/order.route";
 import auth from "./routes/auth.route";
+import dotenv from "dotenv";
+import { protect } from "./middlewares/auth.middleware";
 
 const app = express();
+
+dotenv.config();
 
 app.use(cors({
     origin: "*",   // allow all (dev)
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
 
 app.use(express.json());
 
@@ -43,7 +48,7 @@ app.use("/categories", categories);
 app.use("/products", products);
 
 // cart
-app.use("/cart", cart);
+app.use("/cart", protect, cart);
 
 // wish
 app.use("/wish", wish);
