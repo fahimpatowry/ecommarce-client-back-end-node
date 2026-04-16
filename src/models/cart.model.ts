@@ -4,13 +4,15 @@ export interface ICartItem extends Document  {
     productIds: Types.ObjectId[];
     quantity: number;
     userId: Types.ObjectId;
+    cardId?: string
 }
 
 const CartSchema = new Schema(
     {
         productIds: [{ type: Types.ObjectId, required: true }],
         quantity: { type: Number, required: true },
-        userId: { type: Schema.Types.ObjectId, ref: "User", required: true }
+        userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+        cardIdS: {type: String, required: false}
     },
     { timestamps: { createdAt: "createAt", updatedAt: "updatedAt" } }
 )

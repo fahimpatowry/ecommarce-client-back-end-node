@@ -11,13 +11,6 @@ const route = Router();
  *     description: Retrieve all cart items associated with a specific user.
  *     tags:
  *       - Cart
- *     parameters:
- *       - in: query
- *         name: userId
- *         required: true
- *         schema:
- *           type: string
- *         description: The ID of the user whose cart items are being fetched.
  *     responses:
  *       200:
  *         description: Successfully retrieved cart items
@@ -43,9 +36,6 @@ route.get("/", fetchCarts)
  *           schema:
  *             type: object
  *             properties:
- *               userId:
- *                 type: string
- *                 description: ID of the user
  *               productIds:
  *                 type: array
  *                 items:
@@ -55,7 +45,6 @@ route.get("/", fetchCarts)
  *                 type: integer
  *                 description: Quantity of items to add
  *             required:
- *               - userId
  *               - productIds
  *               - quantity
  *     responses:
@@ -159,12 +148,6 @@ route.put("/", updateCart)
  *         schema:
  *           type: string
  *         description: ID of the cart item to delete
- *       - in: query
- *         name: userId
- *         required: true
- *         schema:
- *           type: string
- *         description: ID of the user who owns the cart item
  *     responses:
  *       200:
  *         description: Cart item successfully deleted

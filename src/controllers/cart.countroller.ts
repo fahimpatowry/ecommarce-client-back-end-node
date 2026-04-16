@@ -2,7 +2,8 @@ import { Request, Response } from "express";
 import { addNewCart, deleteOneCart, getAllCartItems, updateOneCart } from "../services/cart.services";
 
 export const fetchCarts = async (req: Request, res: Response) => {
-    const userId = req.query.userId as string;
+    const { user } = req as any;
+    const userId = user.id;
 
     try{
         const carts = await getAllCartItems(userId);
@@ -46,7 +47,7 @@ export const addCart = async (req: Request, res: Response) => {
     }
 
     try{
-        const newCart = await addNewCart(req.body);
+        const newCart = await addNewCart(req.body, user.id);
 
         res.status(200).json({
             success: true,
@@ -60,7 +61,9 @@ export const addCart = async (req: Request, res: Response) => {
     }
 }
 export const updateCart = async (req: Request, res: Response) => {
-    const { userId, productIds, quantity } = req.body;
+    const { cardId, quantity } = req.body;
+    const { user } = req as any;
+    const userId = user.id;
 
     if (!userId) {
         return res.status(400).json({
@@ -69,10 +72,10 @@ export const updateCart = async (req: Request, res: Response) => {
         });
     }
 
-    if (!productIds || !Array.isArray(productIds) || productIds.length === 0) {
+    if (!cardId || cardId.length === 0) {
         return res.status(400).json({
             success: false,
-            message: "productIds must be a non-empty array"
+            message: "cardId must be a non-empty array"
         });
     }
 
@@ -100,6 +103,8 @@ export const updateCart = async (req: Request, res: Response) => {
 
 export const deleteCart = async (req: Request, res: Response) => {
     const id =  req.query.id as string;
+    // const { user } = req as any;
+    // const userId = user.id;
 
     if (!id) {
         return res.status(400).json({

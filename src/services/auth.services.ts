@@ -42,8 +42,6 @@ export const loginUser = async (data: any) => {
 
   const user = await User.findOne({ email });
 
-  console.log("user", user);
-
   if (!user) {
     throw new Error("Invalid credentials");
   }
