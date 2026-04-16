@@ -103,8 +103,6 @@ export const updateCart = async (req: Request, res: Response) => {
 
 export const deleteCart = async (req: Request, res: Response) => {
     const id =  req.query.id as string;
-    // const { user } = req as any;
-    // const userId = user.id;
 
     if (!id) {
         return res.status(400).json({

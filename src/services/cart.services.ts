@@ -28,8 +28,11 @@ export const getAllCartItems = async (userId: string) => {
 
 export const addNewCart = async (data: ICartItem, userId: string) => {
   const { productIds, quantity } = data;
-
-  let cart = await Cart.findOne({ userId });
+  
+  let cart = await Cart.findOne({
+    userId,
+    productIds,
+  });
 
   if (!cart) {
     return Cart.create({
@@ -37,23 +40,12 @@ export const addNewCart = async (data: ICartItem, userId: string) => {
       quantity: data.quantity,
       userId: userId,
     });
+  } else {
+    cart.quantity += quantity;
+    await cart.save();
+    return cart;
+
   }
-
-  for (const product of productIds) {
-    const exists = cart?.productIds.some(
-      (p: any) => p.toString() === product.toString()
-    );
-
-    if (exists && cart) {
-      cart.quantity += quantity;
-    } else {
-      cart?.productIds.push(new Types.ObjectId(product));
-    }
-  }
-
-  await cart?.save();
-
-  return cart;
 };
 
 export const updateOneCart = async (data: ICartItem) => {
