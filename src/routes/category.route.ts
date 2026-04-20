@@ -15,7 +15,6 @@ const route = Router();
  *      200:
  *       description: OK message
  */ 
-
 route.get("/", fetchCategories)
 
 export default route;

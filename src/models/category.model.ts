@@ -4,7 +4,7 @@ export interface ICategory {
     name: string;
     slug: string;
     url?: string;
-    categoryId?: string;
+    categoryId?: number;
 }
 
 const CategorySchema = new Schema(
@@ -12,7 +12,7 @@ const CategorySchema = new Schema(
         name: { type:String, required: true },
         slug: { type:String, required: true },
         url: { type:String, required: false },
-        categoryId: { type:String, required: true },
+        categoryId: { type:Number, required: true },
     },
     { timestamps:  { createdAt: "createAt", updatedAt: "updatedAt" }}
 )

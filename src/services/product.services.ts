@@ -10,7 +10,5 @@ export const getProductById = async (id: string) => {
 }
 
 export const getProductByCategory = async (categoryId: string) => {
-    return await Product.find({
-        categoryId: new mongoose.Types.ObjectId(categoryId)
-    });
+    return await Product.find({ categoryId: Number(categoryId) }).sort({ createdAt: -1 });
 }

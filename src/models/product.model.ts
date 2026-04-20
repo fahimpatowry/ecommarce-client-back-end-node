@@ -2,9 +2,9 @@ import mongoose, { Document } from "mongoose"
 
 export interface IProduct extends Document {
     url: string[];
-    title: string;
+    name: string;
     description: string;
-    categoryID: mongoose.Types.ObjectId;
+    categoryID: number;
     price: number;
     orderCount: number;
     discount: number;
@@ -17,10 +17,10 @@ export interface IProduct extends Document {
 const ProductSchema = new mongoose.Schema(
     {
         url: { type: [String], required: true },
-        title: { type: String, required: true },
+        name: { type: String, required: true },
         description: { type: String, required: true },
         categoryID: { 
-            type: mongoose.Schema.Types.ObjectId, 
+            type: Number, 
             required: true 
         },
         price: { type: Number, required: true },
