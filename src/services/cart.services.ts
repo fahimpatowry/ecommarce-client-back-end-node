@@ -10,7 +10,12 @@ export const getAllCartItems = async (userId: string) => {
   });
 
   for (const item of await cart) {
+
     const product = await Product.findById(item.productIds[0]);
+
+    if (!product) {
+      continue; // Skip if product not found
+    }
     const total = item?.quantity * (product?.price || 0);
 
     const newProduct = {

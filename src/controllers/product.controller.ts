@@ -57,6 +57,7 @@ export const fetchProductByCategoryId = async (req: Request, res: Response) => {
     
     try{
         const product = await getProductByCategory(categoryId);
+        console.log("product", product)
 
         res.status(200).json({
             success: true,
