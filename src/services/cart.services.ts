@@ -2,12 +2,13 @@ import { Types } from "mongoose";
 import Cart, { ICartItem } from "../models/cart.model";
 import Product from "../models/product.model";
 
-export const getAllCartItems = async (userId: string) => {
+export const getAllCartItems = async (userId: string, skip: number, limit: number) => {
   let cardWithProduct = [];
 
-  const cart = Cart.find({ userId: new Types.ObjectId(userId) }).sort({
+  const cart = Cart.find({ userId: new Types.ObjectId(userId) }).skip(skip).limit(limit).sort({
     createdAt: -1,
   });
+  const total = await Cart.countDocuments({ userId: new Types.ObjectId(userId) });
 
   for (const item of await cart) {
 
@@ -28,7 +29,7 @@ export const getAllCartItems = async (userId: string) => {
     cardWithProduct.push(newProduct);
   }
 
-  return cardWithProduct;
+  return {cardWithProduct, total};
 };
 
 export const addNewCart = async (data: ICartItem, userId: string) => {

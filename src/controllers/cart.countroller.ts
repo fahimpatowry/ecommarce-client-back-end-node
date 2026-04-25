@@ -5,12 +5,20 @@ export const fetchCarts = async (req: Request, res: Response) => {
     const { user } = req as any;
     const userId = user.id;
 
+    const { page, limit } = req.query;
+    const skip = (Number(page || 0) - 1) * Number(limit || 10);
+
     try{
-        const carts = await getAllCartItems(userId);
+        const {cardWithProduct, total} = await getAllCartItems(userId, skip, Number(limit));
 
         res.status(200).json({
             success: true,
-            data: carts
+            data: cardWithProduct,
+            pageInfo: {
+                currentPage: Number(page),
+                totalPages: Math.ceil(total / Number(limit)),
+                totalItems: total
+            }
         })
     }catch{
         res.status(500).json({
