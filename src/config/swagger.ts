@@ -15,6 +15,20 @@ const options = {
         url: `http://localhost:${PORT}`, // Update your server URL
       },
     ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
   },
   apis: ["./src/routes/*.ts", "./src/controllers/*.ts"], // Path to your route files
 };

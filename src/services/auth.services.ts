@@ -34,7 +34,7 @@ export const registerUser = async (data: UserType) => {
     throw new Error("Failed to save user to the database");
   }
 
-  return user;
+  // return user;
 };
 
 export const loginUser = async (data: any) => {
