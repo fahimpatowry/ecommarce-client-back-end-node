@@ -8,7 +8,7 @@ export interface IProduct extends Document {
     price: number;
     orderCount: number;
     discount: number;
-    tag: string;
+    tag: string[];
     isPopular: boolean;
     createAt: Date;
     updatedAt: Date;
@@ -26,7 +26,8 @@ const ProductSchema = new mongoose.Schema(
         price: { type: Number, required: true },
         orderCount: { type: Number, default: 0 },
         discount: { type: Number, default: 0 },
-        tag: { type: String, required: true },
+        tag: { type: [String], required: true },
+        // tags: [{ type: String }],
         isPopular: { type: Boolean, default: false }
     },
     { timestamps: { createdAt: "createAt", updatedAt: "updatedAt" } }

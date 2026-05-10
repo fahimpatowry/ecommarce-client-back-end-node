@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { fetchProductByCategoryId, fetchProductById, fetchProductBySlug, fetchProducts } from "../controllers/product.controller";
+import { fetchProductByCategoryId, fetchProductById, fetchProductBySlug, fetchProductByTag, fetchProducts } from "../controllers/product.controller";
 
 const router = Router();
 
@@ -10,12 +10,63 @@ const router = Router();
  *     summary: Returns a list of 
  *     tags:
  *       - Products
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         description: Page number
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           example: 1
+ *       - in: query
+ *         name: limit
+ *         description: Page Limit
+ *         required: true
+ *         schema: 
+ *           type: number
+ *           example: 10
  *     responses:
  *       200:
  *         description: Product list fetched successfully
  */
-
 router.get("/", fetchProducts)
+
+/**
+ * @swagger
+ * /products/product-by-tag:
+ *   get:
+ *     summary: Get products by  tag
+ *     tags:
+ *       - Products
+ *     parameters:
+ *       - in: query
+ *         name: tag
+ *         required: true
+ *         description: tag
+ *         schema:
+ *           type: string
+ *           example: dsd10
+ *       - in: query
+ *         name: page
+ *         description: Page number
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           example: 1
+ *       - in: query
+ *         name: limit
+ *         description: Page limit
+ *         required: true
+ *         schema: 
+ *           type: integer
+ *           example: 10
+ *     responses:
+ *       200:
+ *         description: Products fetched successfully
+ *       404:
+ *         description: Category not found
+ */
+router.get("/product-by-tag", fetchProductByTag)
 
 /**
  * @swagger
@@ -81,5 +132,6 @@ router.get("/similar-products/:categoryId", fetchProductByCategoryId)
  *         description: Category not found
  */
 router.get("/product-by-slug/:slug", fetchProductBySlug)
+
 
 export default router;

@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import Product from "../models/product.model";
 
 export const getAllProducts = async (skip: number, limit: number) => {
@@ -39,6 +38,30 @@ export const getProductByCategory = async (
   }
   const total = await Product.countDocuments({
     categoryId: Number(categoryId),
+  });
+  return { data, total };
+};
+
+export const getProductByTag = async (
+  tag: string,
+  skip: number,
+  limit: number
+) => {
+  let data : any = [];
+  
+  if (tag) {
+    data = await Product.find({
+      tag: tag,
+    })
+      .skip(skip)
+      .limit(limit)
+      .sort({ createdAt: -1 });
+  }else{
+    data = []
+  }
+
+  const total = await Product.countDocuments({
+    categoryId: Number(tag),
   });
   return { data, total };
 };
